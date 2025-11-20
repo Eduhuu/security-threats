@@ -8,7 +8,6 @@ app.get('/check-updates', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   const appVersionFile= req.query.versionFile;
   const command = `cat ${appVersionFile}.txt`;
-  console.log(command);
   exec(command, (err, output) => {
     if (err) {
       res.status(500).send(err);
@@ -29,7 +28,6 @@ app.get('/login', (req, res) => {
     return;
   }
   const sql = `SELECT * FROM users WHERE username='${myUser}' AND password='${myPassword}'`;
-  console.log(sql);
   db.get(sql, (err, row) => {
     if (err) {
       res.status(500).send({error: err});
